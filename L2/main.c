@@ -37,6 +37,25 @@ int argmax(double * arr, int k){
     return min_i_for_max_value;
 }   
 
+double mean_of_elements_after_max(double * arr, int k){
+    // первый номер максимального элемента
+    int max_i = argmax(arr, k);
+    if (max_i == k - 1){
+        printf("Максимальный элемент последний!");
+        exit(0);
+    }
+    // считаем среднее арифметическое этих элементов
+    double mean = 0;
+
+    for (int i=max_i+1;i<k;i++){
+        mean += arr[i];
+    }
+
+    mean /= (k-max_i-1);
+
+    return mean;
+}
+
 int main(){
 
     int k = 0, x = 0, y = 0;
@@ -66,20 +85,7 @@ int main(){
         Массив вещественный.
     */
 
-    // первый номер максимального элемента
-    int max_i = argmax(arr, k);
-    if (max_i == k - 1){
-        printf("Максимальный элемент последний!");
-        exit(0);
-    }
-    // считаем среднее арифметическое этих элементов
-    double mean = 0;
-
-    for (int i=max_i+1;i<k;i++){
-        mean += arr[i];
-    }
-
-    mean /= (k-max_i-1);
+    double mean = mean_of_elements_after_max(arr, k);
 
     printf("Среднее арифметическое элементов, расположенных после первого максимального элемента: %f\n", mean);
     
